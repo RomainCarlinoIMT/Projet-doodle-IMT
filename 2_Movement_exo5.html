@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mouvement</title>
+    <link rel="stylesheet" href="doodle.css">
 </head>
 <body>
     <canvas id="my_canvas" width="750" height="1000" style="border: 1px solid red"></canvas>
@@ -140,6 +141,11 @@
 
             SetDirection(newDirection) {
                 this._model.direction = newDirection;
+            }
+
+            getCtx()
+            {
+
             }
             
             Update() {
