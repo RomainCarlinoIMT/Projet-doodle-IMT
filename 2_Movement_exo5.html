@@ -6,13 +6,13 @@
     <title>Mouvement</title>
 </head>
 <body>
-    <canvas id="my_canvas" width="110" height="110" style="border: 1px solid red"></canvas>
+    <canvas id="my_canvas" width="1000" height="1000" style="border: 1px solid red"></canvas>
 
     <script>
         class Model {
             static GRAVITY    = 20;
-            static JUMP_FORCE = 500;
-            static SPEED      = 200;
+            static JUMP_FORCE = 1000; 
+            static SPEED      = 500;
 
             constructor() {
                 this._direction = 0;                
@@ -34,7 +34,7 @@
                 this._position.y += this._gravitySpeed / fps;
                 this._position.x += this._direction * Model.SPEED / fps;
 
-                if (this._position.y > 100) {
+                if (this._position.y > 1000) {
                     this._Jump();
                 }
 
@@ -104,11 +104,16 @@
                 this.ctx.beginPath(); // Nouveau tracé.
                 this.ctx.moveTo(100, 0); // Déplacement du crayon en (100, 0).
                 this.ctx.lineTo(100, 100); // Dessiner la ligne en (150, 100).
-                this.ctx.stroke(); // Afficher la ligne.
-                this.ctx.beginPath(); // Nouveau tracé.
-                this.ctx.moveTo(0, 100); // Déplacement du crayon en (100, 0).
-                this.ctx.lineTo(100, 100); // Dessiner la ligne en (150, 100).
-                this.ctx.stroke(); // Afficher la ligne.
+                //this.ctx.stroke(); // Afficher la ligne.
+                //this.ctx.beginPath(); // Nouveau tracé.
+                //this.ctx.moveTo(0, 100); // Déplacement du crayon en (100, 0).
+                //this.ctx.lineTo(100, 100); // Dessiner la ligne en (150, 100).
+                //this.ctx.stroke(); // Afficher la ligne.
+
+                this.ctx.drawImage(HEXTILES_IMAGE, 1, 1, 58, 17, 100, 17, 78, 15);
+                this.ctx.drawImage(HEXTILES_IMAGE, 1, 19, 58, 17, 100, 100, 78, 15);
+                this.ctx.drawImage(HEXTILES_IMAGE, 1, 55, 58, 17, 100, 200, 78, 15);
+                //
                 
                 // Dessiner un rectangle plein.
                 this.ctx.fillRect(x, y, 10, 10);
@@ -157,8 +162,18 @@
             }
         }
 
-        const app = new Controller(new Model(), new View());
+        const HEXTILES_IMAGE = new Image();
+        HEXTILES_IMAGE.src = 'images/game-tiles.png';
+        Promise.all([
+            new Promise( (resolve) => {HEXTILES_IMAGE.addEventListener('load', () => { resolve();}); })
+        ])
+        .then(() => {
+            console.log("aaha");
+            const app = new Controller(new Model(), new View());
         app.Update();
+        });
+
+        
     </script>
     
 </body>
