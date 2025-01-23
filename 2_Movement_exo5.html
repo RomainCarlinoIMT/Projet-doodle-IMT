@@ -181,17 +181,34 @@
             }
         }
 
+        // Loading tiles and extras
         const HEXTILES_IMAGE = new Image();
         HEXTILES_IMAGE.src = 'images/game-tiles.png';
-        Promise.all([
-            new Promise( (resolve) => {HEXTILES_IMAGE.addEventListener('load', () => { resolve();}); })
-        ])
-        .then(() => {
-            console.log("aaha");
-            const app = new Controller(new Model(), new View());
-        app.Update();
-        });
+        // Load background
+        const BACKGROUND_IMAGE = new Image();
+        BACKGROUND_IMAGE.src = 'images/bck@2x.png';
+        // Loading character
+        //right
+        const CHARACTER_RIGHT = new Image();
+        CHARACTER_RIGHT.src = 'images/lik-right@2x.png';
+        //left
+        const CHARACTER_LEFT = new Image();
+        CHARACTER_LEFT.src = 'images/lik-left@2x.png';
 
+
+            Promise.all([
+                new Promise((resolve) => { HEXTILES_IMAGE.addEventListener('load', () => { resolve(); }); }),
+                new Promise((resolve) => { BACKGROUND_IMAGE.addEventListener('load', () => { resolve(); }); }),
+                new Promise((resolve) => { CHARACTER_RIGHT.addEventListener('load', () => { resolve(); }); }),
+                new Promise((resolve) => { CHARACTER_LEFT.addEventListener('load', () => { resolve(); }); })
+
+
+            ])
+                .then(() => {
+                    console.log("aaha");
+                    const app = new Controller(new Model(), new View());
+                    app.Update();
+                });
         
     </script>
     
