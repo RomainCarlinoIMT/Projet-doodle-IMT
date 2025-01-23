@@ -113,6 +113,8 @@
                 let y = position.y;
                 
                 this.ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
+                this.ctx.drawImage(BACKGROUND_IMAGE, 1, 1, 750, 1000);
+
 
                 // Dessiner les lignes.
                 this.ctx.beginPath(); // Nouveau tracé.
@@ -129,8 +131,10 @@
                 this.ctx.drawImage(HEXTILES_IMAGE, 1, 55, 58, 17, 100, 200, 78, 15);
                 //
                 
-                // Dessiner un rectangle plein.
-                this.ctx.fillRect(x, y, 10, 10);
+                // Character drawing
+                // this.ctx.fillRect(x, y, 10, 10);
+                //this.ctx.drawImage(CHARACTER_RIGHT, 1, 1, 124, 120, x, y, 124, 120);
+                this.ctx.drawImage(CHARACTER_LEFT, 1, 1, 124, 120, x, y, 124, 120);
             }
         }
 
